@@ -1,0 +1,26 @@
+# Untrack all python version files
+.python-version
+
+# Untrack all Jupyter Notebooks
+*.ipynb
+
+# Untrack all Excel files
+*.xlsx
+*.xls
+
+# Untrack all CSV files
+*.csv
+*.toml
+
+# Untrack .env
+.env
+# Untrack Identifier file
+.Identifier
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+raw_data/
+**/__pycache__/
+**/gridai.egg-info/
+gridai-website/
+.env.yaml
