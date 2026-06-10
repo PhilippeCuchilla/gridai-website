@@ -112,12 +112,43 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.set_page_config(layout="wide",page_title="Grid-AI Prediction", page_icon="⚡️")
-st.title("⚡️ Grid-AI ⚡️",text_alignment="center")
-st.header("Global Real-time Intelligent Demand AI", text_alignment="center", divider="gray")
+col1, col2 = st.columns(2)
+st.set_page_config(layout="wide")
+with col1:
+    st.image("map_texas.png")
+with col2 :
+    with st.form(key='params_for_api'):
+        predic_region = region = st.selectbox("Choisir une région", [ 'South Central', 'Coast', 'South', 'East','North Central', 'West', 'Far West', 'North'])
+        predic_date = st.datetime_input('Date/Hour', value=datetime.datetime(2026, 5, 27, 7, 00, 00))
+        st.form_submit_button('Make prediction', icon = '⚡️')
 
-create_page = st.Page("page_machine.py", title="Machine Learning", icon="⚙️")
-delete_page = st.Page("page_deep.py", title="Deep Learning", icon="🤖")
+    code_regions = {
+        "Coast" : "COAS",
+        "East" : "EAST",
+        "Far West" : "FWES",
+        "North Central" : "NCEN",
+        "North" : "NRTH",
+        "South Central" : "SCEN",
+        "South" : "SOUT",
+        "West" : "WEST"
+    }
 
-pg = st.navigation([create_page, delete_page])
-pg.run()
+    params = dict(
+        region=code_regions[predic_region],
+        date_time=str(predic_date)
+        )
+
+    gridai_api_url = f'http://127.0.0.1:8000/predict_deep'
+    URL_model = st.secrets['URL_deep']
+    response = requests.get(URL_model, params=params)
+
+    prediction = response.json()
+
+    pred = round(prediction['prediction'],2)
+
+    if prediction:
+        st.markdown(f"""
+            <div class="prediction">
+                ⚡ {pred} MWh ⚡
+            </div>
+        """, unsafe_allow_html=True)
