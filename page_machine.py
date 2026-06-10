@@ -140,7 +140,7 @@ with col2 :
 
     gridai_api_url = f'http://127.0.0.1:8000/predict'
     URL_model = st.secrets['URL']
-    response = requests.get(gridai_api_url, params=params)
+    response = requests.get(URL_model, params=params)
 
     prediction = response.json()
 
