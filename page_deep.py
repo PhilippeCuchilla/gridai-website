@@ -71,7 +71,7 @@ st.markdown("""
     left:50%;
     animation: fly3 20s linear infinite;
 ">
-⚡️
+🔋
 </div>
 
 <div class="fairy" style="
@@ -160,5 +160,5 @@ with col2 :
 
         st.space(size="small")
         with st.container(border = True, height= 'content') :
-            st.markdown(f"##### Valeur réelle** : {reel} MWh", text_alignment= "center")
+            st.markdown(f"##### Valeur réelle : {reel} MWh", text_alignment= "center")
             st.markdown(f"#####  Erreur : {erreur} % ", text_alignment= "center")
