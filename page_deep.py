@@ -117,10 +117,10 @@ st.set_page_config(layout="wide")
 with col1:
     st.image("map_texas.png", caption = 'Carte des régions du Texas selon Ercot')
 with col2 :
-    st.markdown("**Deep Learning**", text_alignment="center")
+    st.markdown("🧠 **Deep Learning**", text_alignment="center")
     with st.form(key='params_for_api'):
         predic_region = region = st.selectbox("Choisir une région", [ 'South Central', 'Coast', 'South', 'East','North Central', 'West', 'Far West', 'North'])
-        predic_date = st.datetime_input('Date/Heur', step= 3600 , value=datetime.datetime(2026, 5, 27, 7, 00, 00))
+        predic_date = st.datetime_input('Date/Heur', step= 3600 , value=datetime.datetime(2026, 5, 27, 8, 00, 00))
         button = st.form_submit_button('Prédiction', icon = '⚡️', icon_position="right", type="secondary")
 
     code_regions = {

@@ -89,8 +89,6 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
-
-# Injecte le CSS
 st.markdown("""
 <style>
 @keyframes flash {
@@ -117,7 +115,7 @@ st.set_page_config(layout="wide")
 with col1:
     st.image("map_texas.png", caption = 'Carte des régions du Texas selon Ercot')
 with col2 :
-    st.markdown("**Machine Learning**", text_alignment="center")
+    st.markdown("🌳 **Machine Learning**", text_alignment="center")
 
     with st.form(key='params_for_api'):
         predic_region = region = st.selectbox("Choisir une région", [ 'South Central', 'Coast', 'South', 'East','North Central', 'West', 'Far West', 'North'])

@@ -114,10 +114,10 @@ st.markdown("""
 
 st.set_page_config(layout="wide",page_title="Grid-AI Prediction", page_icon="⚡️")
 st.title("⚡️ Grid-AI ⚡️",text_alignment="center")
-st.header("Global Real-time Intelligent Demand AI", text_alignment="center", divider="gray")
+st.subheader("Global Real-time Intelligent Demand AI", text_alignment="center", divider= 'grey')
 
-create_page = st.Page("page_machine.py", title="Machine Learning", icon="⚙️")
-delete_page = st.Page("page_deep.py", title="Deep Learning", icon="🤖")
+create_page = st.Page("page_machine.py", title="Machine Learning", icon="🌳")
+delete_page = st.Page("page_deep.py", title="Deep Learning", icon="🧠")
 
-pg = st.navigation([create_page, delete_page])
+pg = st.navigation([create_page, delete_page], position = 'top')
 pg.run()
