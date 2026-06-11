@@ -104,7 +104,7 @@ st.markdown("""
 .prediction {
     animation: flash 1s ease-out forwards;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 2em;
     text-align: center;
     font-weight: bold;
@@ -115,12 +115,13 @@ st.markdown("""
 col1, col2 = st.columns(2)
 st.set_page_config(layout="wide")
 with col1:
-    st.image("map_texas.png")
+    st.image("map_texas.png", caption = 'Carte des régions du Texas selon Ercot')
 with col2 :
+
     with st.form(key='params_for_api'):
         predic_region = region = st.selectbox("Choisir une région", [ 'South Central', 'Coast', 'South', 'East','North Central', 'West', 'Far West', 'North'])
         predic_date = st.datetime_input('Date/Hour', value=datetime.datetime(2026, 5, 27, 7, 00, 00))
-        st.form_submit_button('Make prediction', icon = '⚡️')
+        button = st.form_submit_button('Make prediction', icon = '⚡️', icon_position="right", type="secondary")
 
     code_regions = {
         "Coast" : "COAS",
@@ -146,15 +147,18 @@ with col2 :
 
     pred = round(prediction['prediction'],2)
     reel = round(prediction['reelle'],2)
+    erreur = round(abs(pred - reel)/reel * 100,2)
 
-    if prediction:
+    if prediction and button:
+        st.markdown("####  Prédiction :  ", text_alignment= "center")
+
         st.markdown(f"""
             <div class="prediction">
                 ⚡ {pred} MWh ⚡
             </div>
         """, unsafe_allow_html=True)
-        st.markdown(f"""
-            <div class="prediction">
-                ⚡ {reel} MWh ⚡
-            </div>
-        """, unsafe_allow_html=True)
+
+        st.space(size="small")
+        with st.container(border = True, height= 'content') :
+            st.markdown(f"##### Valeur réelle : {reel} MWh", text_alignment= "center")
+            st.markdown(f"#####  Erreur : {erreur} % ", text_alignment= "center")
